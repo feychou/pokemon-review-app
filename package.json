@@ -1,0 +1,23 @@
+{
+  "name": "peer-review-app",
+  "version": "1.0.0",
+  "description": "A peer review app",
+  "main": "server.js",
+  "dependencies": {
+    "@material-ui/core": "^4.9.7",
+    "body-parser": "^1.18.3",
+    "classnames": "^2.2.6",
+    "cors": "^2.8.5",
+    "cross-fetch": "^3.0.4",
+    "diskdb": "^0.1.17",
+    "ejs": "^2.6.1",
+    "express": "^4.16.4",
+    "nodemon": "^1.18.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "license": "MIT"
+}
