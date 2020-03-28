@@ -68,9 +68,11 @@ function Employee() {
 
   async function onCreateNewReview() {
     try {
+      const reviewsCount = reviews.length;
+      const newReviewId = reviewsCount > 0 ? reviews[reviewsCount - 1].id + 1 : 1;
       const serializedReview = {
         ...newReview,
-        id: reviews.length + 1
+        id: newReviewId
       }
       const response = await fetch(
         `http://localhost:4000/reviews`, 
@@ -91,6 +93,21 @@ function Employee() {
       setError(true);
       onCloseDialog()
     }    
+  }
+
+  async function onDelete(id) {
+    try {
+      const response = await fetch(`http://localhost:4000/reviews/${id}`, { method: 'DELETE' });
+      const responseData = await response.json();
+
+      if (response.status === 200) {
+        setReviews(responseData);
+      } else {
+        setError(true)
+      }
+    } catch {
+      setError(true);
+    }
   }
 
   const changeNewReview = (prop, value) => {
@@ -121,6 +138,8 @@ function Employee() {
                 variant="contained"
                 color="secondary"
                 className={classes.Action}
+                onClick={() => onDelete(id)}
+                onKeyPress={() => onDelete(id)}
               >
                 Delete
               </Button>

@@ -92,9 +92,11 @@ function Employees() {
 
   async function onCreateNewUser() {
     try {
+      const employeesCount = employees.length;
+      const newEmployeeId = employeesCount > 0 ? employees[employeesCount - 1].id + 1 : 1;
       const serializedEmployee = {
         ...newEmployee,
-        id: employees.length + 1
+        id: newEmployeeId
       }
       const response = await fetch(
         `http://localhost:4000/employees`, 
